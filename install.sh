@@ -6,7 +6,7 @@ set -Eeuo pipefail
 
 readonly OPENCODE_VERSION="${OPENCODE_VERSION:-2.0.26}"
 readonly KIRO_NATIVE_REPO="${KIRO_NATIVE_REPO:-https://github.com/wlfonseca/kiro-native.git}"
-readonly KIRO_NATIVE_REF="${KIRO_NATIVE_REF:-11bced129fe2dcb45a9ec2ba0ee2fbdedf7e08d4}"
+readonly KIRO_NATIVE_REF="${KIRO_NATIVE_REF:-f695e689aecbacd2cb799d6d3d8bee36ff71ffe2}"
 readonly NPM_PREFIX="${NPM_PREFIX:-${HOME}/.local}"
 readonly OPENCODE_HOME="${OPENCODE_HOME:-${HOME}/.local/share/opencode-kiro}"
 readonly PROVIDER_DIR="${OPENCODE_HOME}/kiro-native"
@@ -273,11 +273,6 @@ validate_installation() {
   [[ -f "${PROVIDER_DIR}/dist/index.js" ]] || die "build do provider não produziu ${PROVIDER_DIR}/dist/index.js"
   log "OpenCode validado: ${actual_version}"
   log "provider validado: ${PROVIDER_DIR}"
-  if command_exists kiro-cli; then
-    log "kiro-cli encontrado: $(kiro-cli --version 2>/dev/null || echo instalado)"
-  else
-    log "aviso: kiro-cli não está no PATH; instale-o e execute 'kiro-cli login' antes de usar o provider"
-  fi
 }
 
 main() {
@@ -288,7 +283,7 @@ main() {
   clone_or_update_provider
   configure_opencode
   validate_installation
-  log "concluído; execute 'kiro-cli login' e depois 'opencode'"
+  log "concluído; faça o login Kiro com 'npm --prefix ${PROVIDER_DIR} run login' e depois rode 'opencode'"
 }
 
 main "$@"
