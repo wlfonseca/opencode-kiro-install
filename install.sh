@@ -81,16 +81,14 @@ persist_path() {
   esac
   profiles+=("${HOME}/.profile")
 
-  if [[ ":${PATH}:" != *":${path_entry}:"* ]]; then
-    for profile in "${profiles[@]}"; do
-      [[ -f "$profile" ]] || continue
-      if ! grep -Fqx "$export_line" "$profile"; then
-        printf '\n# OpenCode installed by opencode-kiro\n%s\n' "$export_line" >> "$profile"
-        log "PATH persistido em ${profile}"
-      fi
-      break
-    done
-  fi
+  for profile in "${profiles[@]}"; do
+    [[ -f "$profile" ]] || continue
+    if ! grep -Fqx "$export_line" "$profile"; then
+      printf '\n# OpenCode installed by opencode-kiro\n%s\n' "$export_line" >> "$profile"
+      log "PATH persistido em ${profile}"
+    fi
+    break
+  done
 
   export PATH="${path_entry}:${PATH}"
 }
