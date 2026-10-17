@@ -6,7 +6,7 @@ set -Eeuo pipefail
 
 readonly OPENCODE_VERSION="${OPENCODE_VERSION:-2.0.26}"
 readonly KIRO_NATIVE_REPO="${KIRO_NATIVE_REPO:-https://github.com/wlfonseca/kiro-native.git}"
-readonly KIRO_NATIVE_REF="${KIRO_NATIVE_REF:-f695e689aecbacd2cb799d6d3d8bee36ff71ffe2}"
+readonly KIRO_NATIVE_REF="${KIRO_NATIVE_REF:-81b23cde6dfc8b2ea3e354776d021752d8c1abac}"
 readonly NPM_PREFIX="${NPM_PREFIX:-${HOME}/.local}"
 readonly OPENCODE_HOME="${OPENCODE_HOME:-${HOME}/.local/share/opencode-kiro}"
 readonly PROVIDER_DIR="${OPENCODE_HOME}/kiro-native"
